@@ -7,6 +7,12 @@ import VeggieList from './VeggieList/veggie-list';
 import Profile from './Profile/profile';
 
 class App extends Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      veggies: [{name: 'Radishes', germination: 7}]
+    }
+  }
   render(){
   return (
     <main className='App'>
@@ -28,7 +34,9 @@ class App extends Component{
       />
       <Route
         path={'/veggie-list'}
-        component={VeggieList}
+        render={() => 
+          <VeggieList veggies={this.state.veggies}/>
+        }
       />
     </main>
   );

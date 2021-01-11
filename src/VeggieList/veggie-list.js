@@ -4,10 +4,10 @@ import ListItem from '../ListItem/list-item';
 
 class VeggieList extends Component {
     render() {
-        let itemsArray = [1,2,3,4,5];
+        let itemsArray = this.props.veggies;
         let items = [];
         for(let i=0; i<itemsArray.length; i++){
-            let item = <ListItem number={itemsArray[i]} key={itemsArray.indexOf(i)} />;
+            let item = <ListItem veggie={itemsArray[i]} key={itemsArray.indexOf(i)} />;
             items.push(item);
         }
         return(
