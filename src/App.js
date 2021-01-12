@@ -9,8 +9,20 @@ import Profile from './Profile/profile';
 class App extends Component{
   constructor(props){
     super(props)
+    let date = new Date('4-15-2021')
     this.state = {
-      veggies: [{name: 'Radishes', germination: 7}]
+      veggies: [
+        { name: 'Radishes', 
+          daysUntil: {germination: 7, harvest: 28, thinning: 10}, 
+          spacing: {row: 12, plant: 2}, 
+          plantDate: date
+        },
+        { name: 'Carrots',
+          daysUntil: {germination: 12, harvest: 35, thinning: 18},
+          spacing: {row: 12, plant: 3},
+          plantDate: date
+        }
+      ]
     }
   }
   render(){
