@@ -24,7 +24,17 @@ class App extends Component{
         }
       ],
       allVeggies: [
-        { name: 'Beets', 
+        { name: 'Radishes', 
+        daysUntil: {germination: 7, harvest: 28, thinning: 10}, 
+        spacing: {row: 12, plant: 2}, 
+        plantDate: null
+      },
+      { name: 'Carrots',
+        daysUntil: {germination: 12, harvest: 35, thinning: 18},
+        spacing: {row: 12, plant: 3},
+        plantDate: null
+      },
+      { name: 'Beets', 
           daysUntil: {germination: 7, harvest: 28, thinning: 10}, 
           spacing: {row: 12, plant: 2}, 
           plantDate: null
@@ -46,6 +56,17 @@ class App extends Component{
   handleAddVeggie = (veggie) => {
     let veggies = this.state.veggies;
     veggies.push(veggie);
+    this.setState({veggies: veggies})
+  }
+  handleRemoveVeggie = (index) => {
+    console.log(index)
+    let veggies = [];
+    for(let i=0; i<this.state.veggies.length; i++){
+      if(index !== i){
+        veggies.push(this.state.veggies[i])
+        console.log(veggies)
+      }
+    }
     this.setState({veggies: veggies})
   }
   render(){
@@ -75,6 +96,7 @@ class App extends Component{
             allVeggies={this.state.allVeggies}
             setPlantDate = {this.setPlantDate}
             handleAddVeggie = {this.handleAddVeggie}
+            handleRemoveVeggie = {this.handleRemoveVeggie}
           />
         }
       />

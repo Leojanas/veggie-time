@@ -42,7 +42,13 @@ class VeggieList extends Component {
         let itemsArray = this.props.veggies;
         let items = [];
         for(let i=0; i<itemsArray.length; i++){
-            let item = <ListItem veggie={itemsArray[i]} key={i} setPlantDate={this.props.setPlantDate} />;
+            let item = <ListItem 
+                veggie={itemsArray[i]} 
+                key={i} 
+                index={i} 
+                setPlantDate={this.props.setPlantDate} 
+                handleRemoveVeggie={this.props.handleRemoveVeggie}
+            />;
             items.push(item);
         }
         return(

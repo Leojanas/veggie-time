@@ -60,6 +60,7 @@ class ListItem extends Component {
                     ? <SetDate togglePopUp={this.togglePopUp} handleChangeDate={this.handleChangeDate}/>
                     : null
                 }
+                <button type='button' onClick={() => this.props.handleRemoveVeggie(this.props.index)}>Remove</button>
             </div>
 
         )
