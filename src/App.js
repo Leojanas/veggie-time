@@ -20,10 +20,33 @@ class App extends Component{
         { name: 'Carrots',
           daysUntil: {germination: 12, harvest: 35, thinning: 18},
           spacing: {row: 12, plant: 3},
-          plantDate: date
+          plantDate: null
+        }
+      ],
+      allVeggies: [
+        { name: 'Beets', 
+          daysUntil: {germination: 7, harvest: 28, thinning: 10}, 
+          spacing: {row: 12, plant: 2}, 
+          plantDate: null
+        },
+        { name: 'Turnips',
+          daysUntil: {germination: 12, harvest: 35, thinning: 18},
+          spacing: {row: 12, plant: 3},
+          plantDate: null
         }
       ]
     }
+  }
+  setPlantDate = (date, veggie) => {
+      let index = this.state.veggies.findIndex(v => v.name === veggie);
+      let newVeggie = this.state.veggies[index];
+      newVeggie.plantDate = date;
+      this.setState({...this.state.veggies, newVeggie})
+  }
+  handleAddVeggie = (veggie) => {
+    let veggies = this.state.veggies;
+    veggies.push(veggie);
+    this.setState({veggies: veggies})
   }
   render(){
   return (
@@ -47,7 +70,12 @@ class App extends Component{
       <Route
         path={'/veggie-list'}
         render={() => 
-          <VeggieList veggies={this.state.veggies}/>
+          <VeggieList 
+            veggies={this.state.veggies}
+            allVeggies={this.state.allVeggies}
+            setPlantDate = {this.setPlantDate}
+            handleAddVeggie = {this.handleAddVeggie}
+          />
         }
       />
     </main>
