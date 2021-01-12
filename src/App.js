@@ -5,6 +5,7 @@ import Home from './Home/home';
 import SignUp from './SignUp/sign-up';
 import VeggieList from './VeggieList/veggie-list';
 import Profile from './Profile/profile';
+import Timeline from './Timeline/timeline';
 
 class App extends Component{
   constructor(props){
@@ -59,12 +60,10 @@ class App extends Component{
     this.setState({veggies: veggies})
   }
   handleRemoveVeggie = (index) => {
-    console.log(index)
     let veggies = [];
     for(let i=0; i<this.state.veggies.length; i++){
       if(index !== i){
         veggies.push(this.state.veggies[i])
-        console.log(veggies)
       }
     }
     this.setState({veggies: veggies})
@@ -99,6 +98,10 @@ class App extends Component{
             handleRemoveVeggie = {this.handleRemoveVeggie}
           />
         }
+      />
+      <Route 
+        path={'/timeline'}
+        render={() => <Timeline />}     
       />
     </main>
   );
