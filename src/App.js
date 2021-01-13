@@ -45,7 +45,15 @@ class App extends Component{
           spacing: {row: 12, plant: 3},
           plantDate: null
         }
-      ]
+      ],
+      events: [{
+        date: new Date(),
+        items: [{type: 'planting', completed: false, notes: 'Radishes'}, 
+            {type: 'watering', completed: true, notes: 'Whole garden'}],
+      }, {
+        date: new Date('01-15-2021'),
+        items: [{type: 'weeding', completed: false, notes: 'whole garden'}]
+      }]
     }
   }
   setPlantDate = (date, veggie) => {
@@ -101,7 +109,7 @@ class App extends Component{
       />
       <Route 
         path={'/timeline'}
-        render={() => <Timeline />}     
+        render={() => <Timeline events={this.state.events}/>}     
       />
     </main>
   );
