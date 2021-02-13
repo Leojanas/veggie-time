@@ -9,7 +9,9 @@ class SignUp extends Component {
                 <Nav />
                 <form>
                     <h2>Sign Up</h2>
-                    <label htmlFor='username'>User Name:</label>
+                    <label htmlFor='name'>Name:</label>
+                    <input name='name' />
+                    <label htmlFor='username'>Username:</label>
                     <input name='username' />
                     <label htmlFor='password'>Password:</label>
                     <input name='password' />
