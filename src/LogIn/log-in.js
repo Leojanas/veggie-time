@@ -2,12 +2,24 @@ import {React, Component} from 'react';
 import {Link} from 'react-router-dom';
 import Nav from '../Nav/nav';
 import TokenService from '../Services/token-service';
+import apiService from '../Services/api-service';
 
 class LogIn extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            error: null
+        }
+    }
     handleLogIn = (event) => {
         event.preventDefault();
         const { user_name, password } = event.target;
-        TokenService.saveAuthToken(TokenService.makeBasicAuthToken({user_name, password}));
+        if(!user_name.value || !password.value){
+            this.setState({error: (<div><p>Error: must fill out all fields.</p></div>)})
+        }else{
+            let submission = {username: user_name.value, password: password.value}
+            apiService.sendLogIn(submission)
+        }
 
         user_name.value = '';
         password.value = '';
