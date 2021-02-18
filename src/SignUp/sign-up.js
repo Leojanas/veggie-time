@@ -1,6 +1,6 @@
 import {React, Component} from 'react';
 import Nav from '../Nav/nav';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import apiService from '../Services/api-service';
 
 class SignUp extends Component {
@@ -27,10 +27,10 @@ class SignUp extends Component {
             username.value = '';
             password.value = '';
             password_repeat.value = '';
-            console.log(submission)
             apiService.postSignUp(submission)
             .then((jwt) => {
-                console.log(jwt)
+                this.props.saveToken(jwt);
+                this.props.history.push('/')
             })
             .catch(e => console.log(e))
         }
@@ -59,4 +59,4 @@ class SignUp extends Component {
     }
 }
 
-export default SignUp
+export default withRouter(SignUp);

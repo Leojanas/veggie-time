@@ -1,7 +1,6 @@
 import {React, Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import Nav from '../Nav/nav';
-import TokenService from '../Services/token-service';
 import apiService from '../Services/api-service';
 
 class LogIn extends Component {
@@ -19,10 +18,15 @@ class LogIn extends Component {
         }else{
             let submission = {username: user_name.value, password: password.value}
             apiService.sendLogIn(submission)
+            .then(jwt => {
+                this.props.saveToken(jwt)
+                this.props.history.push('/')
+            })
+            user_name.value = '';
+            password.value = '';
         }
 
-        user_name.value = '';
-        password.value = '';
+
     }
     render() {
         return(
@@ -42,4 +46,4 @@ class LogIn extends Component {
     }
 }
 
-export default LogIn;
+export default withRouter(LogIn);

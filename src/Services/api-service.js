@@ -9,8 +9,10 @@ const apiService = {
         })
         .then(res => res.json())
         .then(response => {
-                console.log(response) 
                 return response.authToken
+        })
+        .catch(e => {
+            return e
         })
     },
     sendLogIn(submission){
@@ -20,15 +22,21 @@ const apiService = {
             body: JSON.stringify(submission)
         })
         .then(res => res.json())
-        .then(response => 
-            {
-            if(!response.ok){
-                console.log(response.status)
-                console.log(response.body)
-            }else{
-                console.log(response.body.authToken)
-                return response.body.authToken
-            }
+        .then(response => {
+            return response.authToken     
+        })
+        .catch(e => {
+            return e
+        })
+    },
+    getAllVeggies(){
+        return fetch(config.API_BASE_ADDRESS + '/api/allVeggies', {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+        })
+        .then(res => res.json())
+        .then(response => {
+            return response
         })
     }
 };

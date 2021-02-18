@@ -12,6 +12,7 @@ class App extends Component{
     super(props)
     let date = new Date('4-15-2021')
     this.state = {
+      authToken: null,
       veggies: [
         { name: 'Radishes', 
           daysUntil: {germination: 7, harvest: 28, thinning: 10}, 
@@ -19,28 +20,6 @@ class App extends Component{
           plantDate: date
         },
         { name: 'Carrots',
-          daysUntil: {germination: 12, harvest: 35, thinning: 18},
-          spacing: {row: 12, plant: 3},
-          plantDate: null
-        }
-      ],
-      allVeggies: [
-        { name: 'Radishes', 
-        daysUntil: {germination: 7, harvest: 28, thinning: 10}, 
-        spacing: {row: 12, plant: 2}, 
-        plantDate: null
-      },
-      { name: 'Carrots',
-        daysUntil: {germination: 12, harvest: 35, thinning: 18},
-        spacing: {row: 12, plant: 3},
-        plantDate: null
-      },
-      { name: 'Beets', 
-          daysUntil: {germination: 7, harvest: 28, thinning: 10}, 
-          spacing: {row: 12, plant: 2}, 
-          plantDate: null
-        },
-        { name: 'Turnips',
           daysUntil: {germination: 12, harvest: 35, thinning: 18},
           spacing: {row: 12, plant: 3},
           plantDate: null
@@ -55,6 +34,9 @@ class App extends Component{
         items: [{type: 'weeding', completed: false, notes: 'whole garden'}]
       }]
     }
+  }
+  saveToken = (token) => {
+    this.setState({authToken: token})
   }
   setPlantDate = (date, veggie) => {
       let index = this.state.veggies.findIndex(v => v.name === veggie);
@@ -89,18 +71,25 @@ class App extends Component{
       />
       <Route
         path={'/log-in'}
-        component={LogIn} 
+        render={() => 
+          <LogIn
+            saveToken={this.saveToken}
+          />
+        } 
       />
       <Route
         path={'/sign-up'}
-        component={SignUp}
+        render={() => 
+          <SignUp
+            saveToken={this.saveToken}
+          />
+        }
       />
       <Route
         path={'/veggie-list'}
         render={() => 
           <VeggieList 
             veggies={this.state.veggies}
-            allVeggies={this.state.allVeggies}
             setPlantDate = {this.setPlantDate}
             handleAddVeggie = {this.handleAddVeggie}
             handleRemoveVeggie = {this.handleRemoveVeggie}

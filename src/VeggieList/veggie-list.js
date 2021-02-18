@@ -1,14 +1,21 @@
 import {React, Component} from 'react';
 import Nav from '../Nav/nav';
 import ListItem from '../ListItem/list-item';
+import apiService from '../Services/api-service';
 
 class VeggieList extends Component {
     constructor(props){
         super(props);
-        this.state = {addVeggiePressed: false, veggieToAdd: null}
+        this.state = {addVeggiePressed: false, veggieToAdd: null, allVeggies: []}
+    }
+    componentDidMount() {
+        apiService.getAllVeggies()
+            .then(veggies => {
+                this.setState({allVeggies: veggies})
+            })
     }
     toggleAddVeggie = () => {
-        this.setState({addVeggiePressed: true, veggieToAdd: this.props.allVeggies[0]})
+        this.setState({addVeggiePressed: true, veggieToAdd: this.state.allVeggies[0]})
     }
     handleAddVeggie = () => {
         this.props.handleAddVeggie(this.state.veggieToAdd);
@@ -16,19 +23,19 @@ class VeggieList extends Component {
     }
     handleChangeSelect = (event) => {
         let veggieToAdd = event.target.value;
-        let veggie = this.props.allVeggies.filter(v => v.name === veggieToAdd)[0];
+        let veggie = this.state.allVeggies.filter(v => v.name === veggieToAdd)[0];
         this.setState({veggieToAdd: veggie})
     }
     render() {
         let addVeggie;
         if(this.state.addVeggiePressed){
             let options = [];
-            for(let i=0; i<this.props.allVeggies.length; i++){
-                options.push(<option value={this.props.allVeggies[i].name} key={i}>{this.props.allVeggies[i].name}</option>)
+            for(let i=0; i<this.state.allVeggies.length; i++){
+                options.push(<option value={this.state.allVeggies[i].veggie_name} key={i}>{this.state.allVeggies[i].veggie_name}</option>)
             }
             addVeggie = (
                 <div>
-                    <select onChange={this.handleChangeSelect} defaultValue={this.props.allVeggies[0].name}>
+                    <select onChange={this.handleChangeSelect} defaultValue={this.state.allVeggies[0].veggie_name}>
                         {options}
                     </select>
                     <button type='button' onClick={this.handleAddVeggie}>Add Veggie</button>
