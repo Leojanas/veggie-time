@@ -1,32 +1,21 @@
 import config from '../config';
 
 const apiService = {
-    postSignUp(submission){
-        return fetch(config.API_BASE_ADDRESS + '/api/auth/signup', {
+    postAuthentication(submission, endpoint){
+        return fetch(config.API_BASE_ADDRESS + `/api/auth/${endpoint}`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(submission)
         })
-        .then(res => res.json())
+        .then(res => {
+            let status = res.status;
+            return res.json()
+            .then(body => {
+                return {status: status, body: body}
+            })
+        })
         .then(response => {
-                return response.authToken
-        })
-        .catch(e => {
-            return e
-        })
-    },
-    sendLogIn(submission){
-        return fetch(config.API_BASE_ADDRESS + '/api/auth/login', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(submission)
-        })
-        .then(res => res.json())
-        .then(response => {
-            return response.authToken     
-        })
-        .catch(e => {
-            return e
+            return response
         })
     },
     getAllVeggies(){

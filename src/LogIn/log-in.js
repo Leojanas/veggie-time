@@ -18,16 +18,21 @@ class LogIn extends Component {
             this.setState({error: (<div><p>Error: must fill out all fields.</p></div>)})
         }else{
             let submission = {username: user_name.value, password: password.value}
-            apiService.sendLogIn(submission)
-            .then(jwt => {
-                tokenService.saveAuthToken(jwt)
-                this.props.history.push('/')
+            console.log(submission)
+            apiService.postAuthentication(submission, 'login')
+            .then(response => {
+                if(response.body.authToken){
+                    this.setState({error: null})
+                    tokenService.saveAuthToken(response.body.authToken)
+                    this.props.history.push('/')
+                }else{
+                    this.setState({error: (<div><p>{response.status} Error: {response.body.error.message}</p></div>)})
+                }
             })
+            .catch(e => console.log(e))
             user_name.value = '';
             password.value = '';
         }
-
-
     }
     render() {
         return(
@@ -39,6 +44,7 @@ class LogIn extends Component {
                 <input required name='user_name' />
                 <label htmlFor='password'>Password:</label>
                 <input required name='password' />
+                {this.state.error}
                 <button type='submit'>Log In</button>
             </form>
             <p>Don't have an account? <Link to='/sign-up'>Sign Up</Link></p>

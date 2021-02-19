@@ -28,11 +28,14 @@ class SignUp extends Component {
             username.value = '';
             password.value = '';
             password_repeat.value = '';
-            apiService.postSignUp(submission)
-            .then((jwt) => {
-                tokenService.saveAuthToken(jwt)
-                
-                this.props.history.push('/')
+            apiService.postAuthentication(submission, 'signup')
+            .then(response => {
+                if(response.body.authToken){
+                    tokenService.saveAuthToken(response.body.authToken)
+                    this.props.history.push('/')
+                }else{
+                    this.setState({error: (<div><p>Error: {response.body.error.message}</p></div>)})
+                }
             })
             .catch(e => console.log(e))
         }
