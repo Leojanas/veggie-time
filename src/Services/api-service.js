@@ -38,6 +38,35 @@ const apiService = {
         .then(response => {
             return response
         })
+    },
+    getGardenVeggies(){
+        let jwt = localStorage.getItem('token')
+        return fetch(config.API_BASE_ADDRESS + '/api/garden', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': jwt
+            }
+        })
+        .then(res => res.json())
+        .then(response => {
+            return response
+        })
+        .catch(e => e)
+    },
+    getEvents(){
+        let jwt = localStorage.getItem('token')
+        return fetch(config.API_BASE_ADDRESS + '/api/events', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': jwt
+            }
+        })
+        .then(res => res.json())
+        .then(response => {
+            return response
+        })
     }
 };
 

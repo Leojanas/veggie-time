@@ -2,6 +2,7 @@ import {React, Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import Nav from '../Nav/nav';
 import apiService from '../Services/api-service';
+import tokenService from '../Services/token-service';
 
 class LogIn extends Component {
     constructor(props){
@@ -19,7 +20,7 @@ class LogIn extends Component {
             let submission = {username: user_name.value, password: password.value}
             apiService.sendLogIn(submission)
             .then(jwt => {
-                this.props.saveToken(jwt)
+                tokenService.saveAuthToken(jwt)
                 this.props.history.push('/')
             })
             user_name.value = '';

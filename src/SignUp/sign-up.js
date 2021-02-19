@@ -2,6 +2,7 @@ import {React, Component} from 'react';
 import Nav from '../Nav/nav';
 import {Link, withRouter} from 'react-router-dom';
 import apiService from '../Services/api-service';
+import tokenService from '../Services/token-service';
 
 class SignUp extends Component {
     constructor(props){
@@ -29,7 +30,8 @@ class SignUp extends Component {
             password_repeat.value = '';
             apiService.postSignUp(submission)
             .then((jwt) => {
-                this.props.saveToken(jwt);
+                tokenService.saveAuthToken(jwt)
+                
                 this.props.history.push('/')
             })
             .catch(e => console.log(e))

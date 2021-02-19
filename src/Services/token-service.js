@@ -1,21 +1,18 @@
-import config from '../config';
 
-const TokenService = {
-    makeBasicAuthToken(userName, password) {
-        return window.btoa(`${userName}:${password}`)
-    },
+
+const tokenService = {
     saveAuthToken(token) {
-        window.localStorage.setItem(config.TOKEN_KEY, token)
+        window.localStorage.setItem('token', token)
     },
     getAuthToken() {
-        return window.localStorage.getItem(config.TOKEN_KEY)
+        return window.localStorage.getItem('token')
     },
     clearAuthToken() {
-        window.localStorage.removeItem(config.TOKEN_KEY)
+        return window.localStorage.removeItem('token')
     },
     hasAuthToken() {
-        return !!TokenService.getAuthToken()
+        return !!this.getAuthToken()
     },
 };
 
-export default TokenService;
+export default tokenService;
