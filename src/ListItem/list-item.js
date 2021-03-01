@@ -12,7 +12,7 @@ class ListItem extends Component {
     }
     togglePopUp = () => {
         this.setState({showPopUp: false})
-        this.props.setPlantDate(this.state.plantDate ,this.props.veggie.name)
+        this.props.setPlantDate(this.state.plantDate ,this.props.index)
     }
     handleChangeDate = (event) => {
         let date = new Date(event.target.value);
@@ -22,6 +22,7 @@ class ListItem extends Component {
     render() {
         let dates;
         if(this.props.veggie.plantDate){
+            let plantDate = new Date(this.props.veggie.plantDate)
             let germDate = new Date(this.props.veggie.plantDate);
             germDate.setDate(germDate.getDate() + this.props.veggie.daysUntil.germination);
             let harvestDate = new Date(this.props.veggie.plantDate);
@@ -36,7 +37,7 @@ class ListItem extends Component {
             }
             dates = (
                 <div>
-                <p>Date Planted: {this.props.veggie.plantDate.toDateString()}</p>
+                <p>Date Planted: {plantDate.toDateString()}</p>
                 <p>Sprout Date: {germDate.toDateString()} </p>
                 <p>Thinning Date: {thinning}</p>
                 <p>Harvest Date: {harvestDate.toDateString()}</p>

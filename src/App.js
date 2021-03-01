@@ -8,36 +8,7 @@ import Profile from './Profile/profile';
 import Timeline from './Timeline/timeline';
 
 class App extends Component{
-  constructor(props){
-    super(props)
-    let date = new Date('4-15-2021')
-    this.state = {
-      authToken: null,
-      veggies: [
-        { name: 'Radishes', 
-          daysUntil: {germination: 7, harvest: 28, thinning: 10}, 
-          spacing: {row: 12, plant: 2}, 
-          plantDate: date
-        },
-        { name: 'Carrots',
-          daysUntil: {germination: 12, harvest: 35, thinning: 18},
-          spacing: {row: 12, plant: 3},
-          plantDate: null
-        }
-      ],
-      events: [{
-        date: new Date(),
-        items: [{type: 'planting', completed: false, notes: 'Radishes'}, 
-            {type: 'watering', completed: true, notes: 'Whole garden'}],
-      }, {
-        date: new Date('01-15-2021'),
-        items: [{type: 'weeding', completed: false, notes: 'whole garden'}]
-      }]
-    }
-  }
-  saveToken = (token) => {
-    this.setState({authToken: token})
-  }
+
   setPlantDate = (date, veggie) => {
       let index = this.state.veggies.findIndex(v => v.name === veggie);
       let newVeggie = this.state.veggies[index];
@@ -72,24 +43,19 @@ class App extends Component{
       <Route
         path={'/log-in'}
         render={() => 
-          <LogIn
-            saveToken={this.saveToken}
-          />
+          <LogIn />
         } 
       />
       <Route
         path={'/sign-up'}
         render={() => 
-          <SignUp
-            saveToken={this.saveToken}
-          />
+          <SignUp />
         }
       />
       <Route
         path={'/veggie-list'}
         render={() => 
           <VeggieList 
-            veggies={this.state.veggies}
             setPlantDate = {this.setPlantDate}
             handleAddVeggie = {this.handleAddVeggie}
             handleRemoveVeggie = {this.handleRemoveVeggie}
@@ -98,7 +64,7 @@ class App extends Component{
       />
       <Route 
         path={'/timeline'}
-        render={() => <Timeline events={this.state.events}/>}     
+        render={() => <Timeline />}     
       />
     </main>
   );

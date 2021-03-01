@@ -6,20 +6,62 @@ import apiService from '../Services/api-service';
 class VeggieList extends Component {
     constructor(props){
         super(props);
-        this.state = {addVeggiePressed: false, veggieToAdd: null, allVeggies: []}
+        this.state = {addVeggiePressed: false, veggieToAdd: null, allVeggies: [], gardenVeggies: []}
     }
     componentDidMount() {
         apiService.getAllVeggies()
             .then(veggies => {
                 this.setState({allVeggies: veggies})
+            });
+        this.getGardenVeggies();
+    }
+    getGardenVeggies = () => {
+        apiService.getGardenVeggies()
+            .then(response => {
+                if(response.status === 200){
+                    console.log(response.body)
+                    this.setState({gardenVeggies: response.body})
+                }else{
+                    console.log(response)
+                }
             })
     }
     toggleAddVeggie = () => {
         this.setState({addVeggiePressed: true, veggieToAdd: this.state.allVeggies[0]})
     }
+    handleRemoveVeggie = (index) => {
+        apiService.removeGardenVeggie(this.state.gardenVeggies[index])
+        .then(response => {
+            console.log('inside then block')
+            if(response.status === 204){
+                let gardenVeggies = this.state.gardenVeggies;
+                gardenVeggies.splice(index, 1);
+                this.setState({gardenVeggies});
+            }
+
+        })
+
+    }
     handleAddVeggie = () => {
-        this.props.handleAddVeggie(this.state.veggieToAdd);
-        this.setState({addVeggiePressed: false, veggieToAdd: null})
+        console.log(this.state.veggieToAdd.id)
+        apiService.addGardenVeggie({veggie_id: this.state.veggieToAdd.id})
+        .then(res => {
+            let veggie = res.body;
+            let veggies = this.state.gardenVeggies;
+            veggies.push(veggie);
+            this.setState({addVeggiePressed: false, veggieToAdd: null, gardenVeggies: veggies})
+        })
+    }
+    setPlantDate = (date, index) => {
+        let dateObject = {plant_date: date}
+        apiService.patchGardenVeggie(this.state.gardenVeggies[index], dateObject)
+        .then(response => {
+            if(response.status === 204){
+                let veggie = this.state.gardenVeggies[index];
+                veggie.plant_date = date;
+                this.getGardenVeggies();
+            }
+        })
     }
     handleChangeSelect = (event) => {
         let veggieToAdd = event.target.value;
@@ -46,15 +88,15 @@ class VeggieList extends Component {
                 <button type='button' onClick={this.toggleAddVeggie}>Add Veggie</button>
             )
         }
-        let itemsArray = this.props.veggies;
+        let itemsArray = this.state.gardenVeggies;
         let items = [];
         for(let i=0; i<itemsArray.length; i++){
             let item = <ListItem 
                 veggie={itemsArray[i]} 
                 key={i} 
-                index={i} 
-                setPlantDate={this.props.setPlantDate} 
-                handleRemoveVeggie={this.props.handleRemoveVeggie}
+                index={i}
+                handleRemoveVeggie={this.handleRemoveVeggie}
+                setPlantDate={this.setPlantDate} 
             />;
             items.push(item);
         }
