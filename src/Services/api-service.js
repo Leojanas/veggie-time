@@ -118,10 +118,12 @@ const apiService = {
             },
             body: JSON.stringify(event)
         })
-        .then(res => res.json())
-        .then(body => {
+        .then(res => {
+            return res.json()
+            .then(body => {
                 return {status: res.status, body: body}
             })
+        })
     },
     patchEvent(id){
         let jwt = localStorage.getItem('token');
