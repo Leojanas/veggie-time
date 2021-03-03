@@ -48,6 +48,9 @@ class LogIn extends Component {
                 <button type='submit'>Log In</button>
             </form>
             <p>Don't have an account? <Link to='/sign-up'>Sign Up</Link></p>
+            <p>Want to see what's possible without creating an account? Feel free to login using the following test credentials to try it out.</p>
+            <p>Username: testuser</p>
+            <p>Password: testpass</p>
             </div>
         )
     }

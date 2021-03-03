@@ -43,7 +43,6 @@ class VeggieList extends Component {
 
     }
     handleAddVeggie = () => {
-        console.log(this.state.veggieToAdd.id)
         apiService.addGardenVeggie({veggie_id: this.state.veggieToAdd.id})
         .then(res => {
             let veggie = res.body;

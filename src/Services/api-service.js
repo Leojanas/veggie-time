@@ -109,6 +109,37 @@ const apiService = {
             },
             body: JSON.stringify(date)
         })
+    },
+    addEvent(event){
+        let jwt = localStorage.getItem('token');
+        console.log(event)
+        return fetch(config.API_BASE_ADDRESS + '/api/events', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwt}`
+            },
+            body: JSON.stringify(event)
+        })
+        .then(res => {
+            console.log(res)
+            return res.json()
+            .then(body => {
+                return {status: res.status, body: body}
+            })
+        })
+    },
+    patchEvent(id){
+        let jwt = localStorage.getItem('token');
+        let string = `/api/events/${id}`;
+        return fetch(config.API_BASE_ADDRESS + string, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwt}`
+            },
+            body: JSON.stringify({completed: true})
+        })
     }
 };
 
