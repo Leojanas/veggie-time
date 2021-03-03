@@ -19,10 +19,8 @@ class VeggieList extends Component {
         apiService.getGardenVeggies()
             .then(response => {
                 if(response.status === 200){
-                    console.log(response.body)
                     this.setState({gardenVeggies: response.body})
                 }else{
-                    console.log(response)
                 }
             })
     }
@@ -32,7 +30,6 @@ class VeggieList extends Component {
     handleRemoveVeggie = (index) => {
         apiService.removeGardenVeggie(this.state.gardenVeggies[index])
         .then(response => {
-            console.log('inside then block')
             if(response.status === 204){
                 let gardenVeggies = this.state.gardenVeggies;
                 gardenVeggies.splice(index, 1);

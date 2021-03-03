@@ -9,7 +9,6 @@ class TimelineDay extends Component {
         })
     }
     render() {
-        console.log(this.props)
         let titleArea = (<h3>{this.props.date.toDateString()}</h3>)
         if(this.props.view === 'day'){
             titleArea = (<div>

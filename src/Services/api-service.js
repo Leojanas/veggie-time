@@ -67,7 +67,6 @@ const apiService = {
         })
     },
     addGardenVeggie(veggie){
-        console.log(veggie)
         let jwt = localStorage.getItem('token')
         return fetch(config.API_BASE_ADDRESS + '/api/garden', {
             method: 'POST',
@@ -85,7 +84,6 @@ const apiService = {
         })
     },
     removeGardenVeggie(veggie){
-        console.log(veggie);
         let id = veggie.id;
         let jwt = localStorage.getItem('token');
         let string = `/api/garden/${id}`;
@@ -112,7 +110,6 @@ const apiService = {
     },
     addEvent(event){
         let jwt = localStorage.getItem('token');
-        console.log(event)
         return fetch(config.API_BASE_ADDRESS + '/api/events', {
             method: 'POST',
             headers: {
@@ -121,13 +118,10 @@ const apiService = {
             },
             body: JSON.stringify(event)
         })
-        .then(res => {
-            console.log(res)
-            return res.json()
-            .then(body => {
+        .then(res => res.json())
+        .then(body => {
                 return {status: res.status, body: body}
             })
-        })
     },
     patchEvent(id){
         let jwt = localStorage.getItem('token');

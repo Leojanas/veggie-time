@@ -12,7 +12,6 @@ class AddEventForm extends Component{
     }
     handleChangeEventType = (event) => {
         let event_type = event.target.value;
-        console.log(event)
         this.setState({event_type})
     }
     handleChangeDate = (event) => {

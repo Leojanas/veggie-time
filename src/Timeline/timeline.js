@@ -13,7 +13,6 @@ class Timeline extends Component {
         this.getEvents();
     }
     getEvents = () => {
-        console.log('get events called')
         apiService.getEvents()
         .then(response => {
             if(response.status === 200){
@@ -28,7 +27,6 @@ class Timeline extends Component {
                         dates.push(date);
                     }
                 }
-                console.log(events)
                 dates.sort()
                 this.setState({events, dates})
             }
@@ -43,7 +41,6 @@ class Timeline extends Component {
         this.setState({addEventPressed: true})
     }
     handleAddEvent = (event) => {
-        console.log(event)
         apiService.addEvent(event)
         .then(() => {
             this.setState({addEventPressed: false})
