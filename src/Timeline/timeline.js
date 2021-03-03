@@ -25,11 +25,11 @@ class Timeline extends Component {
                         events[date].push(response.body[i])
                     }else{
                         events[date] = [response.body[i]]
-                        console.log(date)
                         dates.push(date);
                     }
                 }
                 console.log(events)
+                dates.sort()
                 this.setState({events, dates})
             }
         })
@@ -70,7 +70,7 @@ class Timeline extends Component {
             viewButton = (<button type='button' onClick={this.toggleView}>Day View</button>)
             for(const date in this.state.events){
                 let dateObj = new Date(date)
-                days.push(<TimelineDay view={'full'} key={date} date={dateObj} items={this.state.events[date]}/>)
+                days.push(<TimelineDay view={'full'} key={date} date={dateObj} items={this.state.events[date]} getEvents={this.getEvents}/>)
             }
         }else{
             if(Object.keys(this.state.events).length === 0){
@@ -83,7 +83,8 @@ class Timeline extends Component {
                             date={date} 
                             items={this.state.events[this.state.dates[this.state.dateIndex]]}
                             handleNextDay={this.handleNextDay}
-                            handlePreviousDay={this.handlePreviousDay} 
+                            handlePreviousDay={this.handlePreviousDay}
+                            getEvents={this.getEvents}
                         />)
             }
         }

@@ -4,8 +4,8 @@ import apiService from '../Services/api-service';
 class TimelineDay extends Component {
     handleMarkComplete = (event) => {
         apiService.patchEvent(event.target.id)
-        .then(() => {
-            console.log('returned from patchEvent')
+        .then((response) => {
+            this.props.getEvents()
         })
     }
     render() {

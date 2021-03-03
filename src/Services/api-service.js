@@ -140,6 +140,7 @@ const apiService = {
             },
             body: JSON.stringify({completed: true})
         })
+        .then(res => res.json())
     }
 };
 
