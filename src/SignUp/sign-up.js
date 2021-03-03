@@ -2,7 +2,6 @@ import {React, Component} from 'react';
 import Nav from '../Nav/nav';
 import {Link, withRouter} from 'react-router-dom';
 import apiService from '../Services/api-service';
-import tokenService from '../Services/token-service';
 
 class SignUp extends Component {
     constructor(props){
@@ -28,11 +27,11 @@ class SignUp extends Component {
             username.value = '';
             password.value = '';
             password_repeat.value = '';
-            apiService.postAuthentication(submission, 'signup')
+            apiService.postSignup(submission)
             .then(response => {
-                if(response.body.authToken){
-                    tokenService.saveAuthToken(response.body.authToken)
-                    this.props.history.push('/')
+                console.log(response)
+                if(response.status === 201){
+                    this.props.history.push('/log-in')
                 }else{
                     this.setState({error: (<div><p>Error: {response.body.error.message}</p></div>)})
                 }

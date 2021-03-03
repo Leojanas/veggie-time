@@ -18,7 +18,7 @@ class LogIn extends Component {
             this.setState({error: (<div><p>Error: must fill out all fields.</p></div>)})
         }else{
             let submission = {username: user_name.value, password: password.value}
-            apiService.postAuthentication(submission, 'login')
+            apiService.postLogin(submission)
             .then(response => {
                 if(response.body.authToken){
                     this.setState({error: null})

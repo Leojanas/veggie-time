@@ -1,8 +1,8 @@
 import config from '../config';
 
 const apiService = {
-    postAuthentication(submission, endpoint){
-        return fetch(config.API_BASE_ADDRESS + `/api/auth/${endpoint}`, {
+    postLogin(submission){
+        return fetch(config.API_BASE_ADDRESS + `/api/auth/login`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(submission)
@@ -13,6 +13,28 @@ const apiService = {
             .then(body => {
                 return {status: status, body: body}
             })
+        })
+        .then(response => {
+            return response
+        })
+    },
+    postSignup(submission){
+        return fetch(config.API_BASE_ADDRESS + `/api/auth/signup`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(submission)
+        })
+        .then(res => {
+            let status = res.status;
+            if(status === 201){
+                return {status: status, body: ''}
+            }else{
+                return res.json()
+                .then(body => {
+                    return {status: status, body: body}
+                })
+            }
+
         })
         .then(response => {
             return response
