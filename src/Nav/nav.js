@@ -10,6 +10,7 @@ class Nav extends Component {
     handleLogOut = () => {
         tokenService.clearAuthToken();
         this.setState({login: false})
+        window.location.reload();
     }
     renderLogOut = () => {
         return (<button onClick={this.handleLogOut}>Log Out</button>)
