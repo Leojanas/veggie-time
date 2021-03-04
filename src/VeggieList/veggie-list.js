@@ -1,7 +1,9 @@
 import {React, Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import Nav from '../Nav/nav';
 import ListItem from '../ListItem/list-item';
 import apiService from '../Services/api-service';
+import tokenService from '../Services/token-service';
 
 class VeggieList extends Component {
     constructor(props){
@@ -9,11 +11,15 @@ class VeggieList extends Component {
         this.state = {addVeggiePressed: false, veggieToAdd: null, allVeggies: [], gardenVeggies: []}
     }
     componentDidMount() {
+        if(tokenService.getAuthToken() === null){
+            this.props.history.push('/log-in')
+        }else{
         apiService.getAllVeggies()
             .then(veggies => {
                 this.setState({allVeggies: veggies})
             });
         this.getGardenVeggies();
+        }
     }
     getGardenVeggies = () => {
         apiService.getGardenVeggies()
@@ -107,4 +113,4 @@ class VeggieList extends Component {
     }
 }
 
-export default VeggieList;
+export default withRouter(VeggieList);

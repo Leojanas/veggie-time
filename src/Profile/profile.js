@@ -1,5 +1,7 @@
 import {React, Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import Nav from '../Nav/nav';
+import tokenService from '../Services/token-service';
 import ZoneMap from './zone-map';
 
 class Profile extends Component {
@@ -8,6 +10,11 @@ class Profile extends Component {
         this.state = {
             showPopUp: false
         };
+    }
+    componentDidMount() {
+        if(tokenService.getAuthToken() === null){
+            this.props.history.push('/log-in');
+        }
     }
     togglePopUp = () => {
         this.setState({showPopUp: !this.state.showPopUp});
@@ -48,4 +55,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+export default withRouter(Profile);

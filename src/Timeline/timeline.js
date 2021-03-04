@@ -1,8 +1,10 @@
 import {React, Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import Nav from '../Nav/nav';
 import AddEventForm from '../AddEventForm/add-event-form';
 import TimelineDay from '../TimelineDay/timeline-day';
 import apiService from '../Services/api-service';
+import tokenService from '../Services/token-service';
 
 class Timeline extends Component {
     constructor(props){
@@ -10,7 +12,11 @@ class Timeline extends Component {
         this.state={fullView: false, events: {}, addEventPressed: false, dates: [], dateIndex: 0}
     }
     componentDidMount(){
-        this.getEvents();
+        if(tokenService.getAuthToken() === null){
+            this.props.history.push('/log-in')
+        }else{
+            this.getEvents();
+        }
     }
     getEvents = () => {
         apiService.getEvents()
@@ -100,4 +106,4 @@ class Timeline extends Component {
     }
 }
 
-export default Timeline;
+export default withRouter(Timeline);

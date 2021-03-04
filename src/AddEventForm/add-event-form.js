@@ -7,7 +7,8 @@ class AddEventForm extends Component{
             event_type: 'planting',
             event_date: null,
             completed: false,
-            notes: ''
+            notes: '',
+            error: null
         }
     }
     handleChangeEventType = (event) => {
@@ -27,13 +28,17 @@ class AddEventForm extends Component{
     }
     handleAddEvent = () => {
         let event = this.state;
-        this.props.handleAddEvent(event);
-        this.setState({
-            event_type: 'planting',
-            event_date: null,
-            completed: false,
-            notes: ''
-        })
+        if(!event.event_type || !event.event_date || !event.notes){
+            this.setState({error: (<p>Must fill out all fields before submitting.</p>)})
+        }else{
+            this.props.handleAddEvent(event);
+            this.setState({
+                event_type: 'planting',
+                event_date: null,
+                completed: false,
+                notes: ''
+            })
+        }
     }
     render(){
         return (
@@ -59,6 +64,7 @@ class AddEventForm extends Component{
                 <label htmlFor='notes'>Notes: </label>
                 <input type='textarea' id='notes' value={this.state.notes} onChange={this.handleChangeNotes}/>
                 <br />
+                {this.state.error}
                 <button type='button' onClick={this.handleAddEvent}>Add Event</button>
             </form>
         )
