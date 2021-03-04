@@ -71,19 +71,22 @@ class Timeline extends Component {
         let addEvent = (<button type='button' onClick={this.toggleAddEvent}>Add Event</button>)
         if(this.state.fullView){
             viewButton = (<button type='button' onClick={this.toggleView}>Day View</button>)
-            for(const date in this.state.events){
+            for(let i=0; i<this.state.dates.length; i++){
+                let date = this.state.dates[i];
                 let dateObj = new Date(date)
+                dateObj.setMinutes(dateObj.getMinutes() + dateObj.getTimezoneOffset())
                 days.push(<TimelineDay view={'full'} key={date} date={dateObj} items={this.state.events[date]} getEvents={this.getEvents}/>)
             }
         }else{
             if(Object.keys(this.state.events).length === 0){
                 days = (<p>No events scheduled.</p>)
             }else{
-                let date = new Date(this.state.dates[this.state.dateIndex])
+                let dateObj = new Date(this.state.dates[this.state.dateIndex])
+                dateObj.setMinutes(dateObj.getMinutes() + dateObj.getTimezoneOffset())
                 days = (<TimelineDay 
                             view={'day'} 
                             key={0} 
-                            date={date} 
+                            date={dateObj} 
                             items={this.state.events[this.state.dates[this.state.dateIndex]]}
                             handleNextDay={this.handleNextDay}
                             handlePreviousDay={this.handlePreviousDay}
