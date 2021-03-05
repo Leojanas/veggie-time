@@ -5,6 +5,7 @@ import AddEventForm from '../AddEventForm/add-event-form';
 import TimelineDay from '../TimelineDay/timeline-day';
 import apiService from '../Services/api-service';
 import tokenService from '../Services/token-service';
+import eventService from '../Services/event-service';
 
 class Timeline extends Component {
     constructor(props){
@@ -19,24 +20,51 @@ class Timeline extends Component {
         }
     }
     getEvents = () => {
-        apiService.getEvents()
-        .then(response => {
-            if(response.status === 200){
+        apiService.getGardenVeggies()
+        .then(res => {
+            if(res.status === 200){
                 let events = {};
                 let dates = [];
-                for(let i=0; i<response.body.length; i++){
-                    let date = response.body[i].event_date.split('T')[0];
-                    if(events[date]){
-                        events[date].push(response.body[i])
-                    }else{
-                        events[date] = [response.body[i]]
-                        dates.push(date);
+                for(const veggie of res.body){
+                    if(veggie.plantDate){
+                        let veggieDates = eventService.getEventDates(veggie);
+                        let veggieEvents = eventService.generateEvents(veggieDates, veggie);
+                        for(let i=0; i<veggieEvents.length; i++){
+                            let date = veggieEvents[i].event_date;
+                            if(events[date]){
+                                events[date].push(veggieEvents[i])
+                            }else{
+                                events[date] = [veggieEvents[i]]
+                                dates.push(date);
+                            }
+                        }
                     }
                 }
-                dates.sort()
-                this.setState({events, dates})
+                return {events, dates};
             }
+
         })
+        .then(response => {
+            let events = response.events;
+            let dates = response.dates;
+            apiService.getEvents()
+            .then(response => {
+                if(response.status === 200){
+                    for(let i=0; i<response.body.length; i++){
+                        let date = response.body[i].event_date.split('T')[0];
+                        if(events[date]){
+                            events[date].push(response.body[i])
+                        }else{
+                            events[date] = [response.body[i]]
+                            dates.push(date);
+                        }
+                    }
+                    dates.sort()
+                    this.setState({events, dates})
+                }
+            })
+        })
+
     }
     toggleView = () => {
         this.state.fullView
