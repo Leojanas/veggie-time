@@ -11,7 +11,11 @@ const eventService = {
             thinningDate.setDate(thinningDate.getDate() + veggie.daysUntil.thinning)
             dates.push(thinningDate);
         }
-        return dates;
+        let formattedDates = dates.map(date => {
+            return date.toJSON().split('T')[0]
+        })
+        console.log(formattedDates)
+        return formattedDates;
     },
     generateEvents(dates, veggie){
         let event_types = ['planting', 'sprouting','harvesting', 'thinning'];
