@@ -1,3 +1,36 @@
+h4{
+    text-align: center;
+    margin-top: 0px;
+}
 .list-item{
     border: 2px solid;
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+}
+.group{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+.item{
+    margin: 10px;
+}
+.item-title{
+    margin-bottom: 0px;
+}
+.center{
+    text-align: center;
+}
+.bottom{
+    margin-bottom: 30px;
+}
+
+@media (min-width: 300px){
+    .list-item{
+        width: 280px;
+    }
 }

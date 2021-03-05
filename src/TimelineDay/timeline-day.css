@@ -1,0 +1,34 @@
+#title-area{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+#title-area button{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 100%;
+}
+#viewButton{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.event{
+    border: 2px solid;
+    list-style-type: none;
+}
+h3{
+    text-align: center;
+}
+ul{
+    width: 200px;
+    margin: 0 auto;
+    padding: 0px;
+}
+@media(min-width: 800px){
+    #title-area{
+        width: 800px;
+        margin: 0 auto;
+    }
+}

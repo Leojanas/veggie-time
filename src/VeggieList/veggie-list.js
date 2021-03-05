@@ -4,6 +4,7 @@ import Nav from '../Nav/nav';
 import ListItem from '../ListItem/list-item';
 import apiService from '../Services/api-service';
 import tokenService from '../Services/token-service';
+import './veggie-list.css';
 
 class VeggieList extends Component {
     constructor(props){
@@ -78,7 +79,7 @@ class VeggieList extends Component {
                 options.push(<option value={this.state.allVeggies[i].veggie_name} key={i}>{this.state.allVeggies[i].veggie_name}</option>)
             }
             addVeggie = (
-                <div>
+                <div className='group bottom'>
                     <select onChange={this.handleChangeSelect} defaultValue={this.state.allVeggies[0].veggie_name}>
                         {options}
                     </select>
@@ -87,7 +88,9 @@ class VeggieList extends Component {
             )
         }else{
             addVeggie = (
-                <button type='button' onClick={this.toggleAddVeggie}>Add Veggie</button>
+                <div className='group bottom'>
+                    <button type='button' onClick={this.toggleAddVeggie}>Add Veggie</button>
+                </div>
             )
         }
         let itemsArray = this.state.gardenVeggies;
@@ -106,7 +109,9 @@ class VeggieList extends Component {
             <div>
                 <Nav />
                 <h2>Veggie List</h2>
+                <div id='veggie-list'>
                 {items}
+                </div>
                 {addVeggie}
             </div>
         )

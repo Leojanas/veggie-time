@@ -1,0 +1,9 @@
+h2{
+    text-align: center;
+}
+.narrow{
+    width: 75%;
+    margin: 0 auto;
+    text-align: justify;
+    margin-bottom: 10px;
+}

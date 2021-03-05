@@ -1,0 +1,11 @@
+#veggie-list{
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 800px){
+    #veggie-list{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

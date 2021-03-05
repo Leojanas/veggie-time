@@ -14,7 +14,6 @@ const eventService = {
         let formattedDates = dates.map(date => {
             return date.toJSON().split('T')[0]
         })
-        console.log(formattedDates)
         return formattedDates;
     },
     generateEvents(dates, veggie){
@@ -29,7 +28,6 @@ const eventService = {
             }
             events.push(event);
         }
-        console.log(events)
         return events
     }
 };

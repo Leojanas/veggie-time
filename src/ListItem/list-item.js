@@ -37,31 +37,45 @@ class ListItem extends Component {
             }
             dates = (
                 <div>
-                <p>Date Planted: {plantDate.toDateString()}</p>
-                <p>Sprout Date: {germDate.toDateString()} </p>
-                <p>Thinning Date: {thinning}</p>
-                <p>Harvest Date: {harvestDate.toDateString()}</p>
+                <p className='center'>Date Planted: {plantDate.toDateString()}</p>
+                <p className='center'>Sprout Date: {germDate.toDateString()} </p>
+                <p className='center'>Thinning Date: {thinning}</p>
+                <p className='center'>Harvest Date: {harvestDate.toDateString()}</p>
                 </div>
             )
         }else{
             dates = (
                 <div>
-                <p>Row spacing: {this.props.veggie.spacing.row} inches   Plant spacing: {this.props.veggie.spacing.plant} inches</p>
-                <p>Days to germination: {this.props.veggie.daysUntil.germination}</p>
-                <p>Days to harvest: {this.props.veggie.daysUntil.harvest}</p>
-                <button type='button' onClick={this.setPlantDate}>Record Plant Date</button>
+                    <div className='group'>
+                    <div className='item'>
+                        <h4>Spacing</h4>
+                        <p>Row: {this.props.veggie.spacing.row} inches</p>
+                        <p>Plant: {this.props.veggie.spacing.plant} inches</p>
+                    </div>
+                    <div className='item'>
+                        <h4>Days Until</h4>
+                        <p>Germination: {this.props.veggie.daysUntil.germination}</p>
+                        <p>Harvest: {this.props.veggie.daysUntil.harvest}</p>
+                    </div>
+                    </div>
                 </div>
             )
         }
         return(
             <div className='list-item'>
-                <p>{this.props.veggie.name}</p>
+                <h3 className='item-title'>{this.props.veggie.veggie_name}</h3>
                 {dates}
                 {this.state.showPopUp
                     ? <SetDate togglePopUp={this.togglePopUp} handleChangeDate={this.handleChangeDate}/>
                     : null
                 }
+                <div className='group'>
+                    {this.props.veggie.plantDate
+                        ? null
+                        : <button type='button' onClick={this.setPlantDate}>Record Plant Date</button>
+                    }
                 <button type='button' onClick={() => this.props.handleRemoveVeggie(this.props.index)}>Remove</button>
+                </div>
             </div>
 
         )

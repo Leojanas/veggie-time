@@ -96,7 +96,7 @@ class Timeline extends Component {
     render() {
         let days = [];
         let viewButton = (<button type='button' onClick={this.toggleView}>Full View</button>);
-        let addEvent = (<button type='button' onClick={this.toggleAddEvent}>Add Event</button>)
+        let addEvent = (<div className='group bottom'><button type='button' onClick={this.toggleAddEvent}>Add Event</button></div>)
         if(this.state.fullView){
             viewButton = (<button type='button' onClick={this.toggleView}>Day View</button>)
             for(let i=0; i<this.state.dates.length; i++){
@@ -128,8 +128,10 @@ class Timeline extends Component {
         return (
             <div>
                 <Nav />
-                Timeline
+                <h2>Timeline</h2>
+                <div id='viewButton'>
                 {viewButton}
+                </div>
                 {days}
                 {addEvent}
             </div>

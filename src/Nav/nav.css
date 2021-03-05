@@ -1,0 +1,14 @@
+a{
+    padding: 10px;
+}
+.nav{
+    margin: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+#logout {
+    float: right;
+}
