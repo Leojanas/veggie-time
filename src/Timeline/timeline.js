@@ -72,7 +72,11 @@ class Timeline extends Component {
             :  this.setState({fullView: true})
     }
     toggleAddEvent = () => {
-        this.setState({addEventPressed: true})
+        if(this.state.addEventPressed){
+            this.setState({addEventPressed: false})
+        }else{
+            this.setState({addEventPressed: true})
+        }
     }
     handleAddEvent = (event) => {
         apiService.addEvent(event)
@@ -123,7 +127,7 @@ class Timeline extends Component {
             }
         }
         if(this.state.addEventPressed){
-            addEvent = <AddEventForm handleAddEvent={this.handleAddEvent}/>
+            addEvent = <AddEventForm handleAddEvent={this.handleAddEvent} toggleAddEvent={this.toggleAddEvent}/>
         }
         return (
             <div>

@@ -43,7 +43,7 @@ class AddEventForm extends Component{
     }
     render(){
         return (
-            <div id='add-event-form'>
+            <div className='form'>
             <form>
                 <label htmlFor='event_type'>Event Type: </label>
                 <select id='event_type' onChange={this.handleChangeEventType}>
@@ -67,8 +67,10 @@ class AddEventForm extends Component{
                 <input id='event_date' type='date' onChange={this.handleChangeDate} />
                 <br />
                 {this.state.error}
+                <br />
                 <div className='group bottom'>
                     <button type='button' onClick={this.handleAddEvent}>Add Event</button>
+                    <button type='button' onClick={this.props.toggleAddEvent}>Cancel</button>
                 </div>
 
             </form>

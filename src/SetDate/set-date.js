@@ -7,6 +7,7 @@ class SetDate extends Component {
                 <div className='pop-up-content'>
                 <input type='date' onChange={this.props.handleChangeDate}/>
                 <button onClick={this.props.togglePopUp}>Record Plant Date</button>
+                <button onClick={this.props.togglePopUp}>Cancel</button>
                 </div>
             </div>
         )

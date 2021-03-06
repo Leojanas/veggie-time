@@ -37,19 +37,27 @@ class LogIn extends Component {
         return(
             <div>
                 <Nav />
+                <div className='form'>
             <form onSubmit={this.handleLogIn}>
                 <h2>Log In</h2>
                 <label htmlFor='user_name'>User Name:</label>
                 <input required name='user_name' />
+                <br />
                 <label htmlFor='password'>Password:</label>
                 <input required name='password' />
+                <br />
                 {this.state.error}
-                <button type='submit'>Log In</button>
+                <br />
+                <div className='group'>
+                    <button type='submit'>Log In</button>
+                </div>
             </form>
-            <p>Don't have an account? <Link to='/sign-up'>Sign Up</Link></p>
-            <p>Want to see what's possible without creating an account? Feel free to login using the following test credentials to try it out.</p>
-            <p>Username: testuser</p>
-            <p>Password: testpass</p>
+            </div>
+            <p className='narrow'>Don't have an account? <Link to='/sign-up'>Sign Up</Link></p>
+            <p className='narrow'>Want to see what's possible without creating an account? </p>
+            <p className='narrow'>Feel free to login using the following test credentials to try it out.</p>
+            <p className='narrow'>Username: testuser</p>
+            <p className='narrow'>Password: testpass</p>
             </div>
         )
     }

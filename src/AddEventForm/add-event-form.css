@@ -1,16 +1,24 @@
-#add-event-form{
+.form{
     margin: 0 auto;
     padding: 10px;
+    width: 300px;
 }
-#add-event-form input, #add-event-form select{
+input, select{
     float: left;
 }
-#add-event-form label{
+label{
     padding-right: 2px;
     float: left;
     text-align: right;
-    width: 80px;
+    width: 100px;
 }
 #event-date{
     padding: 0;
 }
+#sign-up label{
+    width: 130px;
+}
+#sign-up input{
+    width: 120px;
+}
+

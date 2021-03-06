@@ -43,20 +43,29 @@ class SignUp extends Component {
         return(
             <div>
                 <Nav />
-                <form onSubmit={this.verifySignUp}>
+                <div className='form'>
+                <form  id='sign-up' onSubmit={this.verifySignUp}>
                     <h2>Sign Up</h2>
                     <label htmlFor='name'>Name:</label>
                     <input name='name' />
+                    <br />
                     <label htmlFor='username'>Username:</label>
                     <input name='username' />
+                    <br />
                     <label htmlFor='password'>Password:</label>
                     <input name='password' />
+                    <br />
                     <label htmlFor='password_repeat'>Repeat Password:</label>
                     <input name='password_repeat' />
+                    <br />
                     {this.state.error}
-                    <button type='submit'>Sign Up</button>
+                    <br />
+                    <div className='group'>
+                        <button type='submit'>Sign Up</button>
+                    </div>
                     </form>
-                    <p>Already have an account? <Link to='/log-in'>Log In</Link></p>
+                    </div>
+                    <p className='narrow'>Already have an account? <Link to='/log-in'>Log In</Link></p>
             </div>
 
         )

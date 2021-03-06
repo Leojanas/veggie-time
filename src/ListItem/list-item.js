@@ -12,7 +12,9 @@ class ListItem extends Component {
     }
     togglePopUp = () => {
         this.setState({showPopUp: false})
-        this.props.setPlantDate(this.state.plantDate ,this.props.index)
+        if(this.state.plantDate){
+            this.props.setPlantDate(this.state.plantDate ,this.props.index)
+        }
     }
     handleChangeDate = (event) => {
         let date = new Date(event.target.value);

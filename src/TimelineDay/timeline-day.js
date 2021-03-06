@@ -22,7 +22,7 @@ class TimelineDay extends Component {
         for(let i=0; i<this.props.items.length; i++){
             let completed = (<div className='group'><button type='button' id={this.props.items[i].id} onClick={this.handleMarkComplete}>Mark Complete</button></div>);
             if(this.props.items[i].completed){
-                completed = (<p>Task Complete</p>)
+                completed = (<p className='center'>Task Complete</p>)
             }
             items.push(<li key={i} className='event'>
                 <p className='center'><b>{this.props.items[i].event_type}</b></p>
