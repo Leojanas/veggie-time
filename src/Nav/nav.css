@@ -1,13 +1,18 @@
 a{
-    padding: 10px;
+    padding: 5px;
+    color: white;
 }
 .nav{
     margin: auto;
     width: 80%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    
+    justify-content: center;   
+}
+#nav-background{
+    background-image: url('../images/farm-photo.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
 }
 #logout {
     float: right;

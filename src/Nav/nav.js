@@ -21,7 +21,7 @@ class Nav extends Component {
     }
     render() {         
         return(
-        <div>
+        <div id='nav-background'>
             <div className='nav'>
                 <Link to='/'>Home</Link>
                 <Link to='/veggie-list'>Veggie List</Link>

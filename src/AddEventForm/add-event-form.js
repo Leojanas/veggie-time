@@ -1,4 +1,5 @@
 import {React, Component} from 'react';
+import './add-event-form.css';
 
 class AddEventForm extends Component{
     constructor(props){
@@ -42,6 +43,7 @@ class AddEventForm extends Component{
     }
     render(){
         return (
+            <div id='add-event-form'>
             <form>
                 <label htmlFor='event_type'>Event Type: </label>
                 <select id='event_type' onChange={this.handleChangeEventType}>
@@ -52,21 +54,25 @@ class AddEventForm extends Component{
                     <option value='harvesting'>Harvesting</option>
                 </select>
                 <br />
-                <label htmlFor='event_date'>Event Date:</label>
-                <input id='event_date' type='date' onChange={this.handleChangeDate} />
-                <br />
-                <label htmlFor='completed'>Is this already done?</label>
+                <label htmlFor='completed'>Completed:</label>
                 <select id='completed' onChange={this.handleChangeCompleted}>  
                     <option value={false}>No</option>
                     <option value={true}>Yes</option>
                 </select>
                 <br />
                 <label htmlFor='notes'>Notes: </label>
-                <input type='textarea' id='notes' value={this.state.notes} onChange={this.handleChangeNotes}/>
+                <input id='notes' value={this.state.notes} onChange={this.handleChangeNotes}/>
+                <br />
+                <label htmlFor='event_date'>Event Date:</label>
+                <input id='event_date' type='date' onChange={this.handleChangeDate} />
                 <br />
                 {this.state.error}
-                <button type='button' onClick={this.handleAddEvent}>Add Event</button>
+                <div className='group bottom'>
+                    <button type='button' onClick={this.handleAddEvent}>Add Event</button>
+                </div>
+
             </form>
+            </div>
         )
     }
 }

@@ -20,7 +20,7 @@ class TimelineDay extends Component {
         }
         let items = [];
         for(let i=0; i<this.props.items.length; i++){
-            let completed = (<button type='button' id={this.props.items[i].id} onClick={this.handleMarkComplete}>Mark Complete</button>);
+            let completed = (<div className='group'><button type='button' id={this.props.items[i].id} onClick={this.handleMarkComplete}>Mark Complete</button></div>);
             if(this.props.items[i].completed){
                 completed = (<p>Task Complete</p>)
             }
@@ -31,7 +31,7 @@ class TimelineDay extends Component {
             </li>)
         }
         return (
-            <div>
+            <div className='day'>
                 {titleArea}
                 <div className='group'>
                     <ul>

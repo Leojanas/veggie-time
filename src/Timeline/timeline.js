@@ -132,7 +132,9 @@ class Timeline extends Component {
                 <div id='viewButton'>
                 {viewButton}
                 </div>
-                {days}
+                <div className='timeline'>
+                    {days}
+                </div>
                 {addEvent}
             </div>
         )

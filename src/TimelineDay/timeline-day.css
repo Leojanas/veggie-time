@@ -17,6 +17,14 @@
 .event{
     border: 2px solid;
     list-style-type: none;
+    background-color: lightseagreen;
+}
+.timeline{
+    display: flex;
+    flex-direction: column;
+}
+.day{
+    padding: 10px;
 }
 h3{
     text-align: center;
@@ -28,6 +36,13 @@ ul{
 }
 @media(min-width: 800px){
     #title-area{
+        width: 800px;
+        margin: 0 auto;
+    }
+    .timeline{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
         width: 800px;
         margin: 0 auto;
     }

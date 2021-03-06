@@ -1,0 +1,16 @@
+#add-event-form{
+    margin: 0 auto;
+    padding: 10px;
+}
+#add-event-form input, #add-event-form select{
+    float: left;
+}
+#add-event-form label{
+    padding-right: 2px;
+    float: left;
+    text-align: right;
+    width: 80px;
+}
+#event-date{
+    padding: 0;
+}
