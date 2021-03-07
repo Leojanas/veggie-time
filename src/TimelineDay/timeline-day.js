@@ -24,11 +24,13 @@ class TimelineDay extends Component {
             if(this.props.items[i].completed){
                 completed = (<p className='center'>Task Complete</p>)
             }
-            items.push(<li key={i} className='event'>
-                <p className='center'><b>{this.props.items[i].event_type}</b></p>
-                <p className='center'>{this.props.items[i].notes}</p>
-                {completed}
-            </li>)
+            items.push(
+                <li key={i} className='event'>
+                    <p className='center'><b>{this.props.items[i].event_type}</b></p>
+                    <p className='center'>{this.props.items[i].notes}</p>
+                    {completed}
+                </li>
+            )
         }
         return (
             <div className='day'>
@@ -38,7 +40,6 @@ class TimelineDay extends Component {
                     {items}
                     </ul>
                 </div>
-
             </div>
         )
     }

@@ -134,7 +134,7 @@ class Timeline extends Component {
                 <Nav />
                 <h2>Timeline</h2>
                 <div id='viewButton'>
-                {viewButton}
+                    {viewButton}
                 </div>
                 <div className='timeline'>
                     {days}

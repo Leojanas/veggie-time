@@ -42,9 +42,7 @@ class VeggieList extends Component {
                 gardenVeggies.splice(index, 1);
                 this.setState({gardenVeggies});
             }
-
         })
-
     }
     handleAddVeggie = () => {
         apiService.addGardenVeggie({veggie_id: this.state.veggieToAdd.id})
@@ -110,7 +108,7 @@ class VeggieList extends Component {
                 <Nav />
                 <h2>Veggie List</h2>
                 <div id='veggie-list'>
-                {items}
+                    {items}
                 </div>
                 {addVeggie}
             </div>
