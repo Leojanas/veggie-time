@@ -23,12 +23,12 @@ This page allows the user to log in, and has a link to the singup form if the us
 
 Veggie List
 
-![Add Recipe Form](screenshots/veggie-list.png)
+![Veggie List](screenshots/veggie-list.png)
 
 This page shows the user the veggies they currently have selected for their garden, and allows them to add new veggies, set plant dates, and remove veggies.
 
 TImeline
 
-![Meal Plan](screenshots/timeline.png)
+![Timeline](screenshots/timeline.png)
 
 This shows the user all of the events they have for their garden.  It can be viewed one day at a time or in full view which shows all events.  Users can mark events complete and add new events.
