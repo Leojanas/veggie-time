@@ -43,8 +43,8 @@ class LogIn extends Component {
                         <label htmlFor='user_name'>User Name:</label>
                         <input required name='user_name' />
                         <br />
-                        <label htmlFor='password' type='password'>Password:</label>
-                        <input required name='password' />
+                        <label htmlFor='password'>Password:</label>
+                        <input required  type='password' name='password' />
                         <br />
                         {this.state.error}
                         <br />
