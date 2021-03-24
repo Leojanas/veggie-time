@@ -51,10 +51,10 @@ class SignUp extends Component {
                         <label htmlFor='username'>Username:</label>
                         <input name='username' />
                         <br />
-                        <label htmlFor='password'>Password:</label>
+                        <label htmlFor='password' type='password'>Password:</label>
                         <input name='password' />
                         <br />
-                        <label htmlFor='password_repeat'>Repeat Password:</label>
+                        <label htmlFor='password_repeat' type='password'>Repeat Password:</label>
                         <input name='password_repeat' />
                         <br />
                         {this.state.error}
